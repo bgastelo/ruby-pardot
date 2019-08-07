@@ -21,6 +21,10 @@ module Pardot
           post "/do/send/prospect_id/#{prospect_id}", params
         end
 
+        def send_to_prospect_email prospect_email, params
+          post "/do/send/prospect_email/#{prospect_email}", params
+        end
+
         def send_to_list params
           post "/do/send", params
         end
@@ -33,7 +37,7 @@ module Pardot
         end
 
         def post path, params = {}, result = "email"
-          response = @client.post "email", path, params
+          response = @client.post "email", path, {}, 0, params
           result ? response[result] : response
         end
 
