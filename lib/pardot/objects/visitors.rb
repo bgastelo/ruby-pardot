@@ -6,34 +6,19 @@ module Pardot
       end
 
       class Visitors
-        def initialize(client)
-          @client = client
-        end
+        include ::Pardot::ApiBuilder
+        add_query_endpoint
+        add_endpoints :read_by_id,
+                      :read_by_email
 
-        def query(params)
-          result = get '/do/query', params, 'result'
-          result['total_results'] = result['total_results'].to_i if result['total_results']
-          result
-        end
-
-        def assign(id, params = {})
+        def assign id, params = {}
+          warn '[DEPRECATION] `assign` is deprecated.  Please use `assign_by_id` instead.'
           post "/do/assign/id/#{id}", params
         end
 
-        def read(id, params = {})
+        def read id, params = {}
+          warn '[DEPRECATION] `read` is deprecated.  Please use `read_by_id` instead.'
           post "/do/read/id/#{id}", params
-        end
-
-        protected
-
-        def get(path, params = {}, result = 'visitor')
-          response = @client.get 'visitor', path, params
-          result ? response[result] : response
-        end
-
-        def post(path, params = {}, result = 'visitor')
-          response = @client.post 'visitor', path, params
-          result ? response[result] : response
         end
       end
     end

@@ -6,38 +6,16 @@ module Pardot
       end
 
       class Lists
-        def initialize(client)
-          @client = client
-        end
+        include ::Pardot::ApiBuilder
+        add_query_endpoint
+        add_endpoints :read_by_id,
+                      :update_by_id,
+                      :create,
+                      :delete_by_id
 
-        def create(_id, params = {})
-          post '/do/create', params
-        end
-
-        def query(params)
-          result = get '/do/query', params, 'result'
-          result['total_results'] = result['total_results'].to_i if result['total_results']
-          result
-        end
-
-        def read_by_id(id, params = {})
-          get "/do/read/id/#{id}", params
-        end
-
-        def update(id, _params = {})
-          post "/do/update/#{id}"
-        end
-
-        protected
-
-        def get(path, params = {}, result = 'list')
-          response = @client.get 'list', path, params
-          result ? response[result] : response
-        end
-
-        def post(path, params = {}, result = 'list')
-          response = @client.post 'list', path, params
-          result ? response[result] : response
+        def update id, params = {}
+          warn "[DEPRECATION] `update` is deprecated.  Please use `update_by_id` instead."
+          post "/do/update/id/#{id}"
         end
       end
     end

@@ -6,42 +6,23 @@ module Pardot
       end
 
       class Opportunities
-        def initialize(client)
-          @client = client
-        end
+        include ::Pardot::ApiBuilder
+        add_query_endpoint
+        add_endpoints :create_by_prospect_email,
+                      :create_by_prospect_id,
+                      :read_by_id,
+                      :update_by_id,
+                      :delete_by_id,
+                      :undelete_by_id
 
-        def query(params)
-          result = get '/do/query', params, 'result'
-          result['total_results'] = result['total_results'].to_i if result['total_results']
-          result
-        end
-
-        def create_by_email(email, params = {})
+        def create_by_email email, params = {}
+          warn "[DEPRECATION] `create_by_email` is deprecated.  Please use `create_by_prospect_email` instead."
           post "/do/create/prospect_email/#{email}", params
         end
 
-        def create_by_id(prospect_id, params = {})
+        def create_by_id prospect_id, params = {}
+          warn "[DEPRECATION] `create_by_id` is deprecated.  Please use `create_by_prospect_id` instead."
           post "/do/create/prospect_id/#{prospect_id}", params
-        end
-
-        def read_by_id(id, params = {})
-          post "/do/read/id/#{id}", params
-        end
-
-        def update_by_id(id, params = {})
-          post "/do/update/id/#{id}", params
-        end
-
-        protected
-
-        def get(path, params = {}, result = 'opportunity')
-          response = @client.get 'opportunity', path, params
-          result ? response[result] : response
-        end
-
-        def post(path, params = {}, result = 'opportunity')
-          response = @client.post 'opportunity', path, params
-          result ? response[result] : response
         end
       end
     end
