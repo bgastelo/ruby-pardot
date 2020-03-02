@@ -7,7 +7,7 @@ module Pardot
 
       def add_endpoint(api_method_name)
         api_method_name = String(api_method_name)
-        method = api_method_name =~ /^(read|send)/ ?  :get : :post
+        method = api_method_name =~ /^read/ ?  :get : :post
         action = api_method_name.split(/_(by|to)_/).first
         args = api_method_name.split(/_(by|to)_/).last.split(/_and_/)
 
