@@ -9,9 +9,9 @@ module Pardot
         include ::Pardot::ApiBuilder
         add_endpoints :read_by_id,
                       :stats_by_id,
-                      :send,
                       :send_by_prospect_id,
                       :send_by_prospect_email
+                      # :send, we can't overwrite the send method as it's how we do metaprogramming
 
         def send_to_prospect prospect_id, params
           warn "[DEPRECATION] `send_to_prospect` is deprecated.  Please use `send_by_prospect_id` instead."
@@ -24,7 +24,6 @@ module Pardot
         end
 
         def send_to_list params
-          warn "[DEPRECATION] `send_to_list` is deprecated.  Please use `send` instead."
           post "/do/send", params
         end
       end

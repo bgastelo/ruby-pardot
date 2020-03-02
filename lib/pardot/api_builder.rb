@@ -13,7 +13,8 @@ module Pardot
 
         define_method api_method_name do |*arguments|
           params = arguments.last.is_a?(Hash) ? arguments.pop : {}
-          self.send method, ['do', action, args.map.with_index { |e, idx| [e, arguments[idx]] }].flatten.join("/"), params
+          path = ['do', action, args.map.with_index { |e, idx| [e, arguments[idx]] }].flatten.join("/")
+          self.send method, path, params
         end
       end
       
