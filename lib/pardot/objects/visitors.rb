@@ -12,13 +12,13 @@ module Pardot
                       :read_by_email
 
         def assign id, params = {}
-          warn '[DEPRECATION] `assign` is deprecated.  Please use `assign_by_id` instead.'
-          post "/do/assign/id/#{id}", params
+          warn "[DEPRECATION] `assign` is deprecated.  Please use `assign_by_id` instead."
+          post "/do/assign/id/#{clean_param(id)}", params
         end
 
         def read id, params = {}
-          warn '[DEPRECATION] `read` is deprecated.  Please use `read_by_id` instead.'
-          post "/do/read/id/#{id}", params
+          warn "[DEPRECATION] `read` is deprecated.  Please use `read_by_id` instead."
+          post "/do/read/id/#{clean_param(id)}", params
         end
       end
     end

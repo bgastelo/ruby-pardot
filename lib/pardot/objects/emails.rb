@@ -15,12 +15,12 @@ module Pardot
 
         def send_to_prospect prospect_id, params
           warn "[DEPRECATION] `send_to_prospect` is deprecated.  Please use `send_by_prospect_id` instead."
-          post "/do/send/prospect_id/#{prospect_id}", params
+          post "/do/send/prospect_id/#{clean_param(prospect_id)}", params
         end
 
         def send_to_prospect_email prospect_email, params
           warn "[DEPRECATION] `send_to_prospect_email` is deprecated.  Please use `send_by_prospect_email` instead."
-          post "/do/send/prospect_email/#{prospect_email}", params
+          post "/do/send/prospect_email/#{clean_param(prospect_email)}", params
         end
 
         def send_to_list params

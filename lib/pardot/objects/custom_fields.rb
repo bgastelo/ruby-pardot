@@ -13,6 +13,7 @@ module Pardot
                       :create,
                       :delete_by_id
       end
+
     end
   end
 end

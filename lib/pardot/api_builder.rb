@@ -1,3 +1,4 @@
+require 'cgi'
 module Pardot
   module ApiBuilder
     module ClassMethods
@@ -13,7 +14,7 @@ module Pardot
 
         define_method api_method_name do |*arguments|
           params = arguments.last.is_a?(Hash) ? arguments.pop : {}
-          path = ['do', action, args.map.with_index { |e, idx| [e, arguments[idx]] }].flatten.join("/")
+          path = ['do', action, args.map.with_index { |e, idx| [e, clean_param(arguments[idx])] }].flatten.join("/")
           self.send method, path, params
         end
       end
@@ -37,6 +38,10 @@ module Pardot
     end
             
     protected
+    def clean_param(param)
+      CGI.escape(param)
+    end
+
     def get(path, params = {}, result = results_field_name)
       response = client.get results_field_name, path, params
       (result && response) ? response[result] : response

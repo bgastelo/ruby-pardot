@@ -15,7 +15,7 @@ module Pardot
 
         def update id, params = {}
           warn "[DEPRECATION] `update` is deprecated.  Please use `update_by_id` instead."
-          post "/do/update/id/#{id}"
+          post "/do/update/id/#{clean_param(id)}"
         end
       end
     end
