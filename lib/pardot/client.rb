@@ -6,31 +6,31 @@ module Pardot
     base_uri 'https://pi.pardot.com'
     format :xml
 
-    include Authentication
-    include Http
+    include ::Pardot::Authentication
+    include ::Pardot::Http
 
-    include Objects::Accounts
-    include Objects::Campaigns
-    include Objects::CustomFields
-    include Objects::CustomRedirects
-    include Objects::DynamicContents
-    include Objects::EmailClicks
-    include Objects::EmailTemplates
-    include Objects::Emails
-    include Objects::Forms
-    include Objects::LifecycleHistory
-    include Objects::LifecycleStages
-    include Objects::ListMemberships
-    include Objects::Lists
-    include Objects::Opportunities
-    include Objects::Prospects
-    include Objects::ProspectAccounts
-    include Objects::TagObjects
-    include Objects::Tags
-    include Objects::Users
-    include Objects::Visitors
-    include Objects::Visits
-    include Objects::VisitorActivities
+    include ::Pardot::Objects::Accounts
+    include ::Pardot::Objects::Campaigns
+    include ::Pardot::Objects::CustomFields
+    include ::Pardot::Objects::CustomRedirects
+    include ::Pardot::Objects::DynamicContents
+    include ::Pardot::Objects::EmailClicks
+    include ::Pardot::Objects::EmailTemplates
+    include ::Pardot::Objects::Emails
+    include ::Pardot::Objects::Forms
+    include ::Pardot::Objects::LifecycleHistory
+    include ::Pardot::Objects::LifecycleStages
+    include ::Pardot::Objects::ListMemberships
+    include ::Pardot::Objects::Lists
+    include ::Pardot::Objects::Opportunities
+    include ::Pardot::Objects::Prospects
+    include ::Pardot::Objects::ProspectAccounts
+    include ::Pardot::Objects::TagObjects
+    include ::Pardot::Objects::Tags
+    include ::Pardot::Objects::Users
+    include ::Pardot::Objects::Visitors
+    include ::Pardot::Objects::Visits
+    include ::Pardot::Objects::VisitorActivities
 
     attr_accessor :email, :password, :user_key, :api_key, :version, :format
 

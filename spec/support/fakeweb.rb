@@ -1,8 +1,8 @@
 require 'fakeweb'
 FakeWeb.allow_net_connect = false
 
-def fake_post path, response
-  FakeWeb.register_uri(:post, "https://pi.pardot.com#{path}", :body => response)
+def fake_post path, response, params = {}
+  FakeWeb.register_uri(:post, "https://pi.pardot.com#{path}", :body => response, :params => params)
 end
 
 def fake_get path, response

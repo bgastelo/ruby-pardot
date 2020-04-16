@@ -46,7 +46,7 @@ module Pardot
 
     def create_auth_header object
       return if object == "login"
-      { :Authorization => "Pardot api_key=#{@api_key}, user_key=#{@user_key}" }
+      { 'Authorization' => "Pardot api_key=#{@api_key}, user_key=#{@user_key}" }
     end
     
     def check_response http_response

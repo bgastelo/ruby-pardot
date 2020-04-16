@@ -14,7 +14,7 @@ module Pardot
         
         def read id, params = {}
           warn "[DEPRECATION] `read` is deprecated.  Please use `read_by_id` instead."
-          post "/do/read/id/#{id}", params
+          post "/do/read/id/#{clean_param(id)}", params
         end
         
       end      

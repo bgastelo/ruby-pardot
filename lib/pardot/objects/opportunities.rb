@@ -19,12 +19,12 @@ module Pardot
                               
         def create_by_email email, params = {}
           warn "[DEPRECATION] `create_by_email` is deprecated.  Please use `create_by_prospect_email` instead."
-          post "/do/create/prospect_email/#{email}", params
+          post "/do/create/prospect_email/#{clean_param(email)}", params
         end
         
         def create_by_id prospect_id, params = {}
           warn "[DEPRECATION] `create_by_id` is deprecated.  Please use `create_by_prospect_id` instead."
-          post "/do/create/prospect_id/#{prospect_id}", params
+          post "/do/create/prospect_id/#{clean_param(prospect_id)}", params
         end
       end      
     end
