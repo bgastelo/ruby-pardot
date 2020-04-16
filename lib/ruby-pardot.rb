@@ -31,3 +31,4 @@ require 'pardot/objects/visitor_activities'
 require 'pardot/objects/visits'
 
 require 'pardot/client'
+require 'pardot/version'
