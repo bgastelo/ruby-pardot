@@ -39,7 +39,8 @@ module Pardot
             
     protected
     def clean_param(param)
-      CGI.escape(param)
+      # TODO: does this work?
+      param.is_a?(Integer) ? param : CGI.escape(param)
     end
 
     def get(path, params = {}, result = results_field_name)
@@ -48,7 +49,7 @@ module Pardot
     end
 
     def post(path, params = {}, result = results_field_name)
-      response = client.post results_field_name, path, {}, 0, params
+      response = client.post results_field_name, path, params
       (result && response) ? response[result] : response
     end
     

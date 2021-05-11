@@ -13,7 +13,7 @@ module Pardot
                       :send_by_prospect_email
                       # :send, we can't overwrite the send method as it's how we do metaprogramming
 
-        def send_to_prospect prospect_id, params
+        def send_to_prospect(prospect_id, params)
           warn "[DEPRECATION] `send_to_prospect` is deprecated.  Please use `send_by_prospect_id` instead."
           post "/do/send/prospect_id/#{clean_param(prospect_id)}", params
         end

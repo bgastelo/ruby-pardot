@@ -16,7 +16,8 @@ def fake_authenticate(client, api_key)
 end
 
 def assert_authorization_header(auth_manager)
-  expect(FakeWeb.last_request[:authorization]).to eq(auth_manager.expected_authorization_header)
+  # expect(FakeWeb.last_request[:authorization]).to eq(auth_manager.expected_authorization_header) # New ruby format
+  expect(FakeWeb.last_request['authorization']).to eq(auth_manager.expected_authorization_header)
   if auth_manager.has_business_unit_id_header?
     expect(FakeWeb.last_request['Business-Unit-Id']).to eq(auth_manager.expected_business_unit_id_header)
   end
