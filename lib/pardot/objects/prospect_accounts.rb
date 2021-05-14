@@ -10,7 +10,6 @@ module Pardot
         add_query_endpoint
         add_endpoints :create,
                       :describe,
-                      :create,
                       :read_by_id,
                       :update_by_id,
                       :assign_by_id

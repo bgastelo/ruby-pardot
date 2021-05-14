@@ -39,7 +39,7 @@ module Pardot
             
     protected
     def clean_param(param)
-      CGI.escape(param)
+      CGI.escape(param.to_s)
     end
 
     def get(path, params = {}, result = results_field_name)
@@ -48,13 +48,13 @@ module Pardot
     end
 
     def post(path, params = {}, result = results_field_name)
-      response = client.post results_field_name, path, {}, 0, params
+      response = client.post results_field_name, path, params
       (result && response) ? response[result] : response
     end
     
     def results_field_name
       last_class = self.class.to_s.split(/::/).last
-      last_class.sub(/s$/, '').sub(/^(\w)/, last_class.to_s[0].downcase)
+      last_class.sub(/ies$/, 'y').sub(/s$/, '').sub(/^(\w)/, last_class.to_s[0].downcase)
     end
   end
 end
