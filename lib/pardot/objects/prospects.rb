@@ -1,7 +1,8 @@
+require 'cgi'
+
 module Pardot
   module Objects
     module Prospects
-
       def prospects
         @prospects ||= Prospects.new self
       end
@@ -72,9 +73,7 @@ module Pardot
         def upsert_by_fid fid, params = {}
           post "/do/upsert/fid/#{clean_param(fid)}", params
         end
-
       end
-
     end
   end
 end

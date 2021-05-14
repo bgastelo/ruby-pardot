@@ -1,12 +1,11 @@
 module Pardot
   module Objects
     module ListMemberships
-
       def list_memberships
         @list_memberships ||= ListMemberships.new self
       end
 
-      class ListMemberships        
+      class ListMemberships
         include ::Pardot::ApiBuilder
         add_query_endpoint
         add_endpoints :read_by_id,

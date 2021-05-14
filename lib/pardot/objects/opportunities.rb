@@ -1,12 +1,10 @@
 module Pardot
   module Objects
-    
     module Opportunities
-      
       def opportunities
         @opportunities ||= Opportunities.new self
       end
-      
+
       class Opportunities
         include ::Pardot::ApiBuilder
         add_query_endpoint

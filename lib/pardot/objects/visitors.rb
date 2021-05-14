@@ -1,11 +1,10 @@
 module Pardot
   module Objects
     module Visitors
-      
       def visitors
         @visitors ||= Visitors.new self
       end
-      
+
       class Visitors
         include ::Pardot::ApiBuilder
         add_query_endpoint

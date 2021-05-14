@@ -1,8 +1,6 @@
 module Pardot
   module Objects
-
     module Emails
-
       def emails
         @emails ||= Emails.new self
       end
@@ -25,12 +23,10 @@ module Pardot
           post "/do/send/prospect_email/#{clean_param(prospect_email)}", params
         end
 
-        def send_to_list params
-          post "/do/send", params
+        def send_to_list(params)
+          post '/do/send', params
         end
-
       end
-
     end
   end
 end

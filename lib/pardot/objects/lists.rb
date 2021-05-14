@@ -1,12 +1,10 @@
 module Pardot
   module Objects
-    
     module Lists
-      
       def lists
         @lists ||= Lists.new self
       end
-      
+
       class Lists
         include ::Pardot::ApiBuilder
         add_query_endpoint
