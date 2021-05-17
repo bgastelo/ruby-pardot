@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'fakeweb'
+require 'cgi'
 FakeWeb.allow_net_connect = false
 
 def fake_post(path, response)
@@ -20,4 +21,11 @@ def assert_authorization_header(auth_manager)
   if auth_manager.has_business_unit_id_header?
     expect(FakeWeb.last_request['Business-Unit-Id']).to eq(auth_manager.expected_business_unit_id_header)
   end
+end
+
+def assert_post_body(params)
+  if params.is_a? String
+    params = CGI.parse params
+  end
+  expect(CGI.parse(FakeWeb.last_request.body)).to eq(params)
 end

@@ -51,9 +51,10 @@ describe Pardot::Objects::Opportunities do
         end
 
         it 'should return the prospect' do
-          fake_post '/api/opportunity/version/3/do/create/prospect_email/user%40test.com?type=Good&format=simple&name=Jim', sample_results
+          fake_post '/api/opportunity/version/3/do/create/prospect_email/user%40test.com', sample_results
 
           expect(client.opportunities.create_by_email('user@test.com', name: 'Jim', type: 'Good')).to eq({ 'name' => 'Jim', 'type' => 'Good' })
+          assert_post_body 'type=Good&format=simple&name=Jim'
 
           assert_authorization_header auth_manager
         end

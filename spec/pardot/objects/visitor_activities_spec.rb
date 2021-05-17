@@ -50,9 +50,10 @@ describe Pardot::Objects::VisitorActivities do
         end
 
         it 'should return the prospect' do
-          fake_post '/api/visitorActivity/version/3/do/read/id/10?format=simple', sample_results
+          fake_post '/api/visitorActivity/version/3/do/read/id/10', sample_results
 
           expect(client.visitor_activities.read(10)).to eq({ 'details' => 'More details', 'type_name' => 'Write' })
+          assert_post_body 'format=simple'
           assert_authorization_header auth_manager
         end
       end

@@ -48,10 +48,11 @@ describe Pardot::Objects::Visitors do
         end
 
         it 'should return the prospect' do
-          fake_post '/api/visitor/version/3/do/assign/id/10?type=Good&format=simple&name=Jim', sample_results
+          fake_post '/api/visitor/version/3/do/assign/id/10', sample_results
 
           expect(client.visitors.assign(10, name: 'Jim',
                                             type: 'Good')).to eq({ 'browser' => 'Chrome', 'language' => 'es' })
+          assert_post_body 'type=Good&format=simple&name=Jim'
           assert_authorization_header auth_manager
         end
       end

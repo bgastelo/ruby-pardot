@@ -49,9 +49,10 @@ describe Pardot::Objects::Visits do
         end
 
         it 'should return the prospect' do
-          fake_post '/api/visit/version/3/do/read/id/10?format=simple', sample_results
+          fake_post '/api/visit/version/3/do/read/id/10', sample_results
 
           expect(client.visits.read(10)).to eq({ 'visitor_page_view_count' => '1', 'duration_in_seconds' => '10' })
+          assert_post_body 'format=simple'
           assert_authorization_header auth_manager
         end
       end

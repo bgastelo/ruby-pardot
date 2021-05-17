@@ -49,11 +49,12 @@ describe Pardot::Objects::Prospects do
         end
 
         it 'should return the prospect' do
-          fake_post '/api/prospect/version/3/do/create/email/user%40test.com?first_name=Jim&format=simple',
+          fake_post '/api/prospect/version/3/do/create/email/user%40test.com',
                     sample_results
 
           expect(client.prospects.create('user@test.com',
                                          first_name: 'Jim')).to eq({ 'last_name' => 'Smith', 'first_name' => 'Jim' })
+          assert_post_body 'first_name=Jim&format=simple'
           assert_authorization_header auth_manager
         end
       end

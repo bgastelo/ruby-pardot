@@ -66,9 +66,10 @@ describe Pardot::Objects::ProspectAccounts do
         end
 
         it 'should return the prospect account' do
-          fake_post '/api/prospectAccount/version/3/do/create?format=simple&name=SuperPanda', sample_results
+          fake_post '/api/prospectAccount/version/3/do/create', sample_results
 
           expect(client.prospect_accounts.create(name: 'SuperPanda')).to eq({ 'name' => 'SuperPanda' })
+          assert_post_body 'format=simple&name=SuperPanda'
           assert_authorization_header auth_manager
         end
       end

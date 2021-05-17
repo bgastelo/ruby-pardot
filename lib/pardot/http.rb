@@ -11,13 +11,13 @@ module Pardot
       raise Pardot::NetError, e
     end
 
-    def post(object, path, params = {}, num_retries = 0, bodyParams = {})
-      smooth_params object, params
+    def post(object, path, bodyParams = {}, num_retries = 0)
+      smooth_params object, bodyParams
       full_path = fullpath object, path
       headers = create_auth_header object
-      check_response self.class.post(full_path, query: params, body: bodyParams, headers: headers)
+      check_response self.class.post(full_path, body: bodyParams, headers: headers)
     rescue Pardot::ExpiredApiKeyError => e
-      handle_expired_api_key :post, object, path, params, num_retries, e
+      handle_expired_api_key :post, object, path, bodyParams, num_retries, e
     rescue SocketError, Interrupt, EOFError, SystemCallError, Timeout::Error, MultiXml::ParseError => e
       raise Pardot::NetError, e
     end
