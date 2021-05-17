@@ -11,8 +11,11 @@ module Pardot
         include ::Pardot::ApiBuilder
         add_query_endpoint
         add_endpoints :read_by_id,
-                      :update_by_id,
-                      :create
+                      :update_by_id
+
+        def create(params)
+          post('/do/create', params)
+        end
       end
     end
   end

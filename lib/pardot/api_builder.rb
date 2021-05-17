@@ -32,11 +32,11 @@ module Pardot
       base.send :extend, ClassMethods
       base.send :attr_reader, :client
     end
-    
+
     def initialize client
       @client = client
     end
-            
+
     protected
     def clean_param(param)
       CGI.escape(param.to_s)
@@ -51,10 +51,14 @@ module Pardot
       response = client.post results_field_name, path, params
       (result && response) ? response[result] : response
     end
-    
+
     def results_field_name
       last_class = self.class.to_s.split(/::/).last
-      last_class.sub(/ies$/, 'y').sub(/s$/, '').sub(/^(\w)/, last_class.to_s[0].downcase)
+      transform_classname(last_class)
+    end
+
+    def transform_classname(classname)
+      classname.sub(/ies$/, 'y').sub(/s$/, '').sub(/^(\w)/, classname.to_s[0].downcase)
     end
   end
 end

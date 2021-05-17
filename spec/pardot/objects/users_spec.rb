@@ -50,7 +50,7 @@ describe Pardot::Objects::Users do
         end
 
         it 'should return the prospect' do
-          fake_post '/api/user/version/3/do/read/email/user@test.com?format=simple', sample_results
+          fake_get '/api/user/version/3/do/read/email/user%40test.com?format=simple', sample_results
 
           expect(client.users.read_by_email('user@test.com')).to eq({ 'email' => 'user@example.com',
                                                                       'first_name' => 'Sue' })

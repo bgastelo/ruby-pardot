@@ -47,7 +47,7 @@ describe Pardot::Objects::ProspectAccounts do
         end
 
         it 'should return a valid account' do
-          fake_post '/api/prospectAccount/version/3/do/read/id/1234?assigned=true&format=simple', sample_results
+          fake_get '/api/prospectAccount/version/3/do/read/id/1234?assigned=true&format=simple', sample_results
 
           expect(client.prospect_accounts.read('1234',
                                                assigned: true)).to eq({ 'id' => '1234', 'name' => 'SupaDupaPanda' })
