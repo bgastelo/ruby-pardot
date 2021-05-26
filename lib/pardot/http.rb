@@ -45,11 +45,11 @@ module Pardot
 
       if using_salesforce_access_token?
         {
-          :Authorization => "Bearer #{@salesforce_access_token}",
+          'Authorization' => "Bearer #{@salesforce_access_token}",
           'Pardot-Business-Unit-Id' => @business_unit_id
         }
       else
-        { Authorization: "Pardot api_key=#{@api_key}, user_key=#{@user_key}" }
+        { 'Authorization' => "Pardot api_key=#{@api_key}, user_key=#{@user_key}" }
       end
     end
 
